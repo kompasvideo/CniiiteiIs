@@ -1,4 +1,4 @@
-package org.example;
+package org.example.as_addr_obj;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;

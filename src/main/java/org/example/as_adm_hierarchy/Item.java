@@ -1,35 +1,27 @@
-package org.example;
+package org.example.as_adm_hierarchy;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.example.DateAdapter;
 
 import java.util.Date;
 
-@XmlRootElement(name = "OBJECT")
-@XmlType(propOrder = { "id", "objectId", "objectGUID", "changeId", "name", "typeName", "level","operTypeId",
-    "prevId", "nextId", "updateDate", "startDate", "endDate", "isActual", "isActive" })
-public class Object2 {
+@XmlRootElement(name = "ITEM")
+@XmlType(propOrder = { "id", "objectId", "parentObjId", "changeId", "prevId", "nextId", "updateDate", "startDate",
+    "endDate", "isActive" })
+public class Item {
     private long id;
     private long objectId;
-    private String objectGUID;
+    private long parentObjId;
     private long changeId;
-    private String name;
-    private String typeName;
-    private byte level;
-    private byte operTypeId;
     private long prevId;
     private long nextId;
     private Date updateDate;
     private Date startDate;
     private Date endDate;
-    private byte isActual;
     private byte isActive;
-
 
     public long getId() {
         return id;
@@ -49,13 +41,13 @@ public class Object2 {
         this.objectId = objectId;
     }
 
-    public String getObjectGUID() {
-        return objectGUID;
+    public long getParentObjId() {
+        return parentObjId;
     }
 
-    @XmlAttribute(name = "OBJECTGUID")
-    public void setObjectGUID(String objectGUID) {
-        this.objectGUID = objectGUID;
+    @XmlAttribute(name = "PARENTOBJID")
+    public void setParentObjId(long parentObjId) {
+        this.parentObjId = parentObjId;
     }
 
     public long getChangeId() {
@@ -67,46 +59,9 @@ public class Object2 {
         this.changeId = changeId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    @XmlAttribute(name = "NAME")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    @XmlAttribute(name = "TYPENAME")
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public byte getLevel() {
-        return level;
-    }
-
-    @XmlAttribute(name = "LEVEL")
-    public void setLevel(byte level) {
-        this.level = level;
-    }
-
-    public byte getOperTypeId() {
-        return operTypeId;
-    }
-
-    @XmlAttribute(name = "OPERTYPEID")
-    public void setOperTypeId(byte operTypeId) {
-        this.operTypeId = operTypeId;
-    }
-
     public long getPrevId() {
         return prevId;
     }
-
     @XmlAttribute(name = "PREVID")
     public void setPrevId(long prevId) {
         this.prevId = prevId;
@@ -115,7 +70,6 @@ public class Object2 {
     public long getNextId() {
         return nextId;
     }
-
     @XmlAttribute(name = "NEXTID")
     public void setNextId(long nextId) {
         this.nextId = nextId;
@@ -124,7 +78,6 @@ public class Object2 {
     public Date getUpdateDate() {
         return updateDate;
     }
-
     @XmlAttribute(name = "UPDATEDATE")
     @XmlJavaTypeAdapter(DateAdapter.class)
     public void setUpdateDate(Date updateDate) {
@@ -134,7 +87,6 @@ public class Object2 {
     public Date getStartDate() {
         return startDate;
     }
-
     @XmlAttribute(name = "STARTDATE")
     @XmlJavaTypeAdapter(DateAdapter.class)
     public void setStartDate(Date startDate) {
@@ -144,43 +96,17 @@ public class Object2 {
     public Date getEndDate() {
         return endDate;
     }
-
     @XmlAttribute(name = "ENDDATE")
     @XmlJavaTypeAdapter(DateAdapter.class)
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public byte getIsActual() {
-        return isActual;
-    }
-
-    @XmlAttribute(name = "ISACTUAL")
-    public void setIsActual(byte isActual) {
-        this.isActual = isActual;
-    }
-
     public byte getIsActive() {
         return isActive;
     }
-
     @XmlAttribute(name = "ISACTIVE")
     public void setIsActive(byte isActive) {
         this.isActive = isActive;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
-    }
-
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
     }
 }
